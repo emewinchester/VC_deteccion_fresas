@@ -22,3 +22,5 @@
 % OJO que todo se hace con distancia de mahalanobis 
 
 % redimensionar la imagenes a la hora de aplicar los clasificadores 
+
+% hola
