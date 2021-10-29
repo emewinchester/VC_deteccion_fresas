@@ -1,4 +1,4 @@
-%% LECTURA AUTOMATIZADA DE LAS IMÁGENES DE ENTRENAMIENTO
+%% LECTURA AUTOMATIZADA DE LAS IM�?GENES DE ENTRENAMIENTO
 
 clear all, close all, clc
 addpath('./Funciones/')
@@ -40,11 +40,12 @@ for i = 1:numIteraciones
     for j = 1:length(valoresCodif)
         cod = valoresCodif(j);
         
-        Ximagen = calcula_descriptores_imagen(imagen, muestra, valoresCodif(j));
+        [Ximagen,XimagenN] = calcula_descriptores_imagen(imagen, muestra, valoresCodif(j));
         Yimagen = valoresCodif(j) * ones(size(Ximagen,1),1);
         
         % concatenamos
         ValoresColores = [ValoresColores ; Ximagen];
+        ValoresColoresNormalizados = [ValoresColoresNormalizados ; XimagenN];
         CodifValoresColores = [CodifValoresColores ; Yimagen];
         
     end
@@ -59,13 +60,11 @@ rmpath('../Material_Imagenes/01_MuestrasColores')
 %% 2.- NORMALIZACIÓN DE DATOS 
 
 
-ValoresColoresNormalizados = normaliza_descriptores(ValoresColores);
-
 
 
 save './DatosGenerados/conjunto_datos_original.mat' ValoresColores ...
-                                           CodifValoresColores ...
-                                           ValoresColoresNormalizados;
+                                                    CodifValoresColores ...
+                                                    ValoresColoresNormalizados;
 
                                        
 %% 3.- REPRESENTACION DE MUESTRAS DE COLOR
@@ -73,7 +72,7 @@ save './DatosGenerados/conjunto_datos_original.mat' ValoresColores ...
 
 
 % CARGAMOS LOS DATOS
-close all, clear all, clc
+clear all, clc
 load DatosGenerados\conjunto_datos_original.mat
 
 
@@ -101,14 +100,15 @@ representa_datos_2D(ab,CodifValoresColores);
 
 % RECALCULAMOS LOS VALORES DE H
 H = ValoresColores(:,4);
-H(H>0.5) = 2*(H(H>0.5)-0.5);
-H(not(H>0.5)) = 1 - 2*H(not(H>0.5));
+Hrec = ones(size(H));
+Hrec(H<=0.5)=1-2*H(H<=0.5);
+Hrec(H>0.5)=2*(H(H>0.5)-0.5);
 
-HSmod = [ H ValoresColores(:,5)];
+HSmod = [ Hrec ValoresColores(:,5)];
 representa_datos_2D(HSmod,CodifValoresColores);
 
-ValoresColores(:,4) = H;
-ValoresColoresNormalizados(:,4) = H;
+ValoresColores(:,4) = Hrec;
+ValoresColoresNormalizados(:,4) = Hrec;
 
 
 
@@ -117,3 +117,4 @@ save './DatosGenerados/conjunto_datos.mat' ValoresColores ...
                                            ValoresColoresNormalizados;
 
 rmpath('Funciones\')
+close all

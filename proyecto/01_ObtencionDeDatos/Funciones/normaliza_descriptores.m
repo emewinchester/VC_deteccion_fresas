@@ -6,7 +6,7 @@ function ValoresColoresNormalizados = normaliza_descriptores(ValoresColores)
     Bnorm = ValoresColores(:,3)/255;
     
     % H S I
-    Hnorm = ValoresColores(:,4)/360;
+    Hnorm = ValoresColores(:,4);
     Snorm = ValoresColores(:,5);
     Inorm = ValoresColores(:,6)/255;
     
