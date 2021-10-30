@@ -3,7 +3,7 @@
 %% 0.- CARGAMOS LOS DATOS
 
 clear all, close all, clc
-load '../../../01_ObtencionDeDatos/DatosGenerados/conjunto_datos.mat'
+load '../../01_ObtencionDeDatos/DatosGenerados/conjunto_datos.mat'
 
 addpath('./Funciones/')
 
