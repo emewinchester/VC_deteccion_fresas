@@ -173,9 +173,9 @@ modelo_mejor_6_dtor = [ modelo_mejor_5_dtor resto(posicion)];
 [ modelo_mejor_6_dtor separabilidad_6_dtor]
 
 % SELECCION MANUAL:
-modelosSeleccionados{1} = modelosColor(1,:); % RGB
-modelosSeleccionados{2} = modelosColor(4,:); % Lab
-modelosSeleccionados{3} = modelo_mejor_3_dtor; % RSL
+modelosSeleccionados{1,1} = modelosColor(1,:); % RGB
+modelosSeleccionados{2,1} = modelosColor(4,:); % Lab
+modelosSeleccionados{3,1} = modelo_mejor_3_dtor; % RSL
 % modelosSeleccionados{4} = modelo_mejor_4_dtor;
 
 
