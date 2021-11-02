@@ -1,7 +1,7 @@
 function Ib = aplica_mahalanobis(imagen,modelo,...
                         centroide,mCov,radio)
     
-% REDUCIMOS LA IMAGEN
+    % REDUCIMOS LA IMAGEN
     imagenR = imresize(imagen,0.5);
 
     % OBTNEMOS LOS DESCRIPTORES DE INTERES NORMALIZADOS

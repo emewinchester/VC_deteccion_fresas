@@ -35,5 +35,5 @@ for i = 1:numImagenes
 end
 
 
-
+rmpath( './../../Material_Imagenes/02_MuestrasRojo')
 rmpath('./../../Funciones') 
