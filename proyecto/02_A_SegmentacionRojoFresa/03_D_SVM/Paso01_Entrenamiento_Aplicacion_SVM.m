@@ -10,9 +10,9 @@ addpath('./../../Funciones')
 
 % caracterizacion del problema
 numImagenes = 2;
-k = 9;   
 
-%% 1.- ENTRENAMIENTO DEL KNN
+
+%% 1.- ENTRENAMIENTO Y APLICACION DE SVM
 
 % SELECCIONAR MODELO (escoger entre 1,2,3)
 modeloSeleccionado = 1;
@@ -26,16 +26,13 @@ CodifValoresRojos = CodifValoresColores == codifOI;
 modelo = modelosSeleccionados{modeloSeleccionado,1};
 datosModelo = ValoresColoresNormalizados(:,modelo);
 
-
-
-
 for i = 1:numImagenes
     
     % LEEMOS LA IMAGEN
     imagen = imread([ 'EvRojo' num2str(i) '.tif']);
 
     % APLICAMOS EL CLASIFICADOR KNN
-    Ib = aplica_knn(imagen,datosModelo,CodifValoresRojos,k,modelo);
+    Ib = aplica_svm(imagen,datosModelo,CodifValoresRojos,modelo);
 
     
     % VISUALIZAMOS LOS RESULTADOS SOBRE LA IMAGEN
