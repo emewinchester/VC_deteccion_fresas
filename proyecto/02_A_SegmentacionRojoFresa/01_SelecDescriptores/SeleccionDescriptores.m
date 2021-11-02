@@ -5,10 +5,12 @@
 clear all, close all, clc
 load '../../01_ObtencionDeDatos/DatosGenerados/conjunto_datos.mat'
 
-addpath('./Funciones/')
+addpath('../../Funciones/')
 
 % variables del problema
-[numMuestras, numDescriptores] = size(ValoresColores);
+[numMuestras, numDescriptores] = size(ValoresColoresNormalizados);
+nM = nombresDescriptores;
+
 
 
 %% 1.- SELECCION 2 MODELOS DE COLOR CON MAYOR SEPARABILIDAD
@@ -45,7 +47,9 @@ for i = 1:size(modelosColor,1)
     XoI = ValoresColoresNormalizados(:,modelosColor(i,:));
 
     separabilidadModelosColor(i) = indiceJ(XoI',YoI');
-    % representa_datos_RGB(XoI,YoI)
+    t = representa_datos_3D(XoI,YoI,nM,modelosColor(i,:));
+    hold on
+    title([t.String ' - Separabilidad ' num2str(separabilidadModelosColor(i))]);
 end
 
 
@@ -127,7 +131,7 @@ for i = 1:length(resto)
 end
 
 
-modelo_mejor_5_dtor = [ modelo_mejor_4_dtor resto(posicion)]
+modelo_mejor_5_dtor = [ modelo_mejor_4_dtor resto(posicion)];
 
 
 
@@ -154,7 +158,7 @@ for i = 1:length(resto)
 end
 
 
-modelo_mejor_6_dtor = [ modelo_mejor_5_dtor resto(posicion)]
+modelo_mejor_6_dtor = [ modelo_mejor_5_dtor resto(posicion)];
 
 
 
@@ -171,11 +175,11 @@ modelo_mejor_6_dtor = [ modelo_mejor_5_dtor resto(posicion)]
 % SELECCION MANUAL:
 modelosSeleccionados{1} = modelosColor(1,:); % RGB
 modelosSeleccionados{2} = modelosColor(4,:); % Lab
-modelosSeleccionados{3} = modelo_mejor_3_dtor; 
-modelosSeleccionados{4} = modelo_mejor_4_dtor;
+modelosSeleccionados{3} = modelo_mejor_3_dtor; % RSL
+% modelosSeleccionados{4} = modelo_mejor_4_dtor;
 
 
 save './DatosGenerados/modelos.mat' modelosSeleccionados; 
 
-rmpath('Funciones\')
+rmpath('../../Funciones/')
 clear all, clc, close all

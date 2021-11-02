@@ -1,15 +1,20 @@
 
 
-function representa_datos_RGB(X,Y)
+function t = representa_datos_3D(X,Y,nombres, modelo)
     
     % Clases en las que se clasifican los pixeles de un frame
     valores = unique(Y);
     
+    % Obtenemos los nombres de los descriptores
+    nd1 = nombres{modelo(1)};
+    nd2 = nombres{modelo(2)};
+    nd3 = nombres{modelo(3)};
+    
     % tantos colores como clases tengamos
-    color = {'.b' ; '.r'};
+    color = {'.k' ; '.b' ; '.g' ; '.r'};
     
     % Obtenemos los valores separados por componente
-    R = X(:,1); G = X(:,2); B = X(:,3);
+    A = X(:,1); B = X(:,2); C = X(:,3);
     
     figure, hold on;
     
@@ -19,16 +24,18 @@ function representa_datos_RGB(X,Y)
         % Obtenemos las posiciones de los pixeles de la clase en cuestion
         FoI = Y == valores(i); % filas of interest
         
-        plot3(R(FoI), G(FoI), B(FoI), color{i});
+        plot3(A(FoI), B(FoI), C(FoI), color{i});
         
     end
     
     % configuramos los datos de la grafica
-%     title('REPRESENTACION EN RGB DE DATOS COLOR Y DATOS FONDO');
+    t = title(['REPRESENTACION DESCRIPTORES ' nd1 nd2 nd3]);
     valorMin = 0; valorMax = 1;
     axis([valorMin valorMax valorMin valorMax valorMin valorMax]);
-%     xlabel('Valores Componente Roja'); ylabel('Valores Componente Verde'); zlabel('Valores Componente Azul');
-%     legend('Datos Color Fondo Escena','Datos Color Seguimiento');
+    xlabel(['Descriptor ' nd1]);
+    ylabel(['Descriptor ' nd2]);
+    zlabel(['Descriptor ' nd3]);
+    legend('Datos Fondo','Datos Color Interes');
     
     hold off; % soltamos la grafica
     

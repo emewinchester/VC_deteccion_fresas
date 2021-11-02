@@ -35,7 +35,8 @@ CodifValoresColores(condicionUmbral & CodifValoresRojo,:) = [];
 %% 2.- SALIDA DE DATOS
 
 save './DatosGenerados/datos_limpios.mat' ValoresColoresNormalizados...
-                                          CodifValoresColores; 
+                                          CodifValoresColores ...
+                                          nombresDescriptores;
                                       
 
                                       
