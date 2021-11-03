@@ -96,27 +96,24 @@ muestra_tabla_metricas(promedioMetricas)
 %% SELECCION DE METRICA
 
 % SELECCIONAR UN MODELO
-modelo = 1; % RGB
-% modelo = 2; % Lab
+% modelo = 1; % RGB
+ modelo = 2; % Lab
 % modelo = 3; % RSL
 
 % SELECCIONAR UN CLASIFICADOR
-clasificador = 1; % mahalanobis
-% clasificador = 2; % knn
+% clasificador = 1; % mahalanobis
+ clasificador = 2; % knn
 % clasificador = 3; % svm
 % clasificador = 4; % nn
 
 
-if clasificador == 1
-    
-end
+clasificadorRojoFresa = [modelo, clasificador]; %KNN_2
 
-if clasificador == 2
-end
+save 'DatosGenerado\clasificador_rojo_fresa.mat' clasificadorRojoFresa;
 
-if clasificador == 3
-end
+rmpath('../Funciones/')
+rmpath('../Material_Imagenes/02_MuestrasRojo/')
 
-if clasificador == 4
-end
+
+
 
