@@ -16,9 +16,9 @@ modeloSeleccionado = 1;
 
 % CARGAMOS EL MODELO
 modelo = parametrosMahalanobis{modeloSeleccionado,1};
-centroide = parametrosMahalanobis{1,2};
-mCov = parametrosMahalanobis{1,3};
-radio = parametrosMahalanobis{1,4};
+centroide = parametrosMahalanobis{modeloSeleccionado,2};
+mCov = parametrosMahalanobis{modeloSeleccionado,3};
+radio = parametrosMahalanobis{modeloSeleccionado,4};
 
 for i = 1:numImagenes
     
