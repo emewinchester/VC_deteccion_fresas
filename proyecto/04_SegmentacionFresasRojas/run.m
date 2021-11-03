@@ -67,9 +67,12 @@ for j = 1:numImagenes
     
 end
 
-metricas
 
-
+nombresMetricas = {'Sensibilidad';'Especifidad';'Precision';'FalsosPositivos'};
+imagen_1 = metricas(:,1);
+imagen_2 = metricas(:,2);
+imagen_3 = metricas(:,3);
+table(nombresMetricas,imagen_1,imagen_2,imagen_3)
 
 
 rmpath('../Funciones/')
