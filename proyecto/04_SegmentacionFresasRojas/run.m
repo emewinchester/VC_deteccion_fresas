@@ -22,6 +22,7 @@ addpath('../Material_Imagenes/03_MuestrasFresas/')
 % clasificador = 4; % nn
 
 numImagenes = 3;
+metricas = [];
 
 % LEEMOS IMAGEN
 for j = 1:numImagenes
@@ -59,7 +60,18 @@ for j = 1:numImagenes
     end
     
     
+    % MEDIMOS LA EFECTIVIDAD DE LAS IMAGENES
+    [sens, esp, pre, fp] = funcion_metricas(Ietiq,gold);
+    columna = [sens, esp, pre, fp]';
+    metricas = [metricas columna];
+    
 end
 
+metricas
 
+
+
+
+rmpath('../Funciones/')
+rmpath('../Material_Imagenes/03_MuestrasFresas/')
 
